@@ -10,6 +10,13 @@
 #+LATEX_HEADER: \setCJKmainfont{WenQuanYi Zen Hei}
 #+OPTIONS: \n:t toc:t num:nil date:nil
 
+* Copyright
+All texts below is mannually transcripted from a PDF file distributed by my math teacher.
+That file didn't even mention copyright, so it is better to be assumed "All Rights Reserved".
+This is also the reason I don't include that file in this repo.
+As I am not a lawyer, you have to decide how you can use this file, specifically my transcripted text representation.
+From my perspective only, my text based work (tech related, not including novels or other similar existances) is GFDLv1.3+ liscensed.
+So, anyway, hold your horde, if in doubt, don't use it for non-study-nor-experiment purpose.
 * Background
 A discrete model for change in price of a stock over a time interval $[0, T]$ is
 \begin{equation}

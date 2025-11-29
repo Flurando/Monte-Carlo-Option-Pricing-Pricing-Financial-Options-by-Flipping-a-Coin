@@ -1,0 +1,56 @@
+#+TITLE: README
+#+Author: 
+#+LATEX_COMPILER: xelatex
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [a4paper,10pt]
+#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+#+LATEX_HEADER: \usepackage{xeCJK}
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \setCJKmainfont{WenQuanYi Zen Hei}
+#+OPTIONS: \n:t toc:t num:nil date:nil
+
+* What is this project about?
+
+See question.org for detail, basically this is a schoolwork/homework required by the math teacher.
+Deadline is about 15 November 2025, would archive this after the deadline.
+
+* How to use?
+
+cd into the /code/ directory, then follow the [[file:code/README.org][README]] there
+
+* How to participate?
+
+Currently only very basic code written according to the instructions in question, the required essay, powerpoint, and so on are all missing.
+So help is welcomed and to some extend necessary.
+However, according to the teacher's rules on this homework,
+only the classmates could participate, and no more than 3 persons in a single team.
+Which means there are two slots, I am really looking forward for participators, especially those with experience in making PPT or writing essays,
+as I have no idea how to write the essay or make the powerpoint!
+For participators' work, specific liscensing is accepted, and tools are not restricted.
+In other words, you can make a PPT which could only be open with MS or have an .doc file essay, new code written with Python+AI...
+Well, yes, I of course impose *zero* moral requirement on collaborator for such schoolwork.
+I would like to add teammates' accounts as collaborators on this project upon deal.
+
+** AI Usage
+Permitted but must be labeled.
+
+** Commit Right
+Of course, if you are my teammate.
+Feel free to edit, being this a team project.
+However, I don't know how to grant others commit right, so if this is possible, may have some delay searching the internet.
+
+** New to GitHub
+Basically, you need a GitHub account, then ~fork~ (by clicking the button) this project, make change on your own fork, then submit a ~Pull Request~ back.
+
+* todos
+** TODO [high] write an essay
+** TODO [high] make a powerpoint
+** TODO [low] add alternative ways for reproducible computing, like docker
+** TODO [low] add serialization so that previous computing results could be stored and recovered
+** TODO [low] connect to some ci service for calculating
+
+* Liscense
+All codes contained, if not specified (like the erf implementation reference source), is GPLv3+ liscenced.
+All texts contained, if not specified (like the transcripted pdf question part), is GFDLv1.3+ liscenced.
+Note that new content might not follow this as collaborators join.
