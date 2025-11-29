@@ -1,11 +1,37 @@
+#+TITLE: README
+#+Author: 
+#+LATEX_COMPILER: xelatex
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [a4paper,10pt]
+#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+#+LATEX_HEADER: \usepackage{xeCJK}
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \setCJKmainfont{WenQuanYi Zen Hei}
+#+OPTIONS: \n:t toc:t num:nil date:nil
+
+* Environment
 to set up the environment, run ~./.init-env~ in this directory
-it would drop you in a shell environment same as mine
+it would drop you in the shell environment same as mine
 with current working directory permissions preserved
 
-upon finish, run ~./q2-sim-plot.scm~ to generate the two simulated trajetories as png in images folder for question (2)
+the *exactly identical* computing environment, as long as you can successfully execute ~.init-env~
 
+** Requirements
+Got ~./.init-env: line 2: guix: command not found~ error?
+Well, to spawn the environment, you need to install [[https://guix.gnu.org/][Guix]], the Nix without Nix.
+This is the easiest way to use my existing setup.
+For those without this option, you need
++ guile 3.0.9
++ guile-plotutils 1.0.1
+the first, guile is a must, because all the code is written in Guile Scheme
+However, you might be able to run them with other Scheme if you bother to change the library declarations in lib/
+the second is mandatory, you need this only when you want to execute the question (2) plotting part
+as I use this wrapping to generate the pngs inside images/
+
+* Calculate
+upon finish, run ~./q2-sim-plot.scm~ to generate the two simulated trajetories as png in images folder for question (2)
 run ~./q3-sim-calc.scm~ to calculate the morte carlo estimation
 (by default, 30000+ rounds of calculation, so...)
-
 run ~./q4-sim-vary.scm~ to calculate the fourth question
 this would take a long time as there are 20*30000 rounds!
