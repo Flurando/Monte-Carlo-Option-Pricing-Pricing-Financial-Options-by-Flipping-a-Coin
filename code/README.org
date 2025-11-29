@@ -1,0 +1,11 @@
+to set up the environment, run ~./.init-env~ in this directory
+it would drop you in a shell environment same as mine
+with current working directory permissions preserved
+
+upon finish, run ~./q2-sim-plot.scm~ to generate the two simulated trajetories as png in images folder for question (2)
+
+run ~./q3-sim-calc.scm~ to calculate the morte carlo estimation
+(by default, 30000+ rounds of calculation, so...)
+
+run ~./q4-sim-vary.scm~ to calculate the fourth question
+this would take a long time as there are 20*30000 rounds!

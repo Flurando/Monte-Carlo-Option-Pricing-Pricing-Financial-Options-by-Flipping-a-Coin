@@ -1,0 +1,117 @@
+#+TITLE: Monte Carlo Option Pricing Solution
+#+Author: 
+#+LATEX_COMPILER: xelatex
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [a4paper,10pt]
+#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+#+LATEX_HEADER: \usepackage{xeCJK}
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \setCJKmainfont{WenQuanYi Zen Hei}
+#+OPTIONS: \n:t toc:t num:nil date:nil
+
+* Solution
+** 1
+for $n=0,1,\dots$, step $\Delta t$
+we get
+$$\begin{aligned}
+S_{n+1} &= S_n + \left.\frac{dS}{dt}\right|_{t_n} S_n \Delta t\\
+&= S_n + \mu S_n \Delta t
+\end{aligned}$$
+which is exactly the equation (1) without shocking
+** 2
+Yes, they do.
+note the y-axis for them
+[[file:code/images/q2-delta-0.1.png][$\delta=0.1$]]
+[[file:code/images/q2-delta-0.25.png][$\delta=0.25$]]
+** 3
+using the default parameters, the output is
+#+begin_src text
+  Case s = 45
+  After 10000 rounds
+  Morte Carlo: 0.9513261102990752
+  Compared to Black Scholes formula result
+  Black Scholes: 0.9821994485439998
+  The percentage error taking BSM as reference is: 3.1432860495585504%
+  Case s = 50
+  After 10000 rounds
+  Morte Carlo: 3.103107411043916
+  Compared to Black Scholes formula result
+  Black Scholes: 3.206291004696837
+  The percentage error taking BSM as reference is: 3.218160594336862%
+  Case s = 55
+  After 10000 rounds
+  Morte Carlo: 6.902299776628594
+  Compared to Black Scholes formula result
+  Black Scholes: 6.866778428333703
+  The percentage error taking BSM as reference is: 0.5172927693184718%
+#+end_src
+** 4
+the emulation output is as below
+#+begin_src text
+  new way using ({}+{})/2
+  for 20 rounds:
+  (0.4867603410369392 0.5088339539060607 0.515927314555167 0.5176025238461435 0.5010024984596436 0.46976928054438993 0.5179985617714127 0.4999120304610847 0.49052173689600614 0.5177035032924415 0.5260035920302344 0.4820877221086515 0.4938067826514226 0.5058316562711163 0.5074331713671288 0.5145855911714374 0.5205604281511415 0.48756460911085314 0.5028267327886505 0.5018259638146649)
+  mean: 0.5034278997117294
+  standard-derivation: 0.01440493199980871
+  old way using {}
+  for 20 rounds:
+  (0.981504148749321 0.9953873985693401 0.9820923852998381 1.0199137716414859 0.960279163391967 0.9869349876499919 1.021648334969107 1.0351389642178677 0.9607247121539174 1.0064387855231078 1.0135633288739987 0.9441738640632169 1.026486055935382 0.9933444348797862 1.003906745878322 0.9862526844981201 1.0002957376642247 1.0013558229891704 1.0029814726408437 1.0386240040563919)
+  mean: 0.9980523401822701
+  standard-derivation: 0.02428353124392
+  Rearrange
+  the new method:
+  0.46976928054438993<={}<0.47780275361379626: 1
+  0.47780275361379626<={}<0.48583622668320264: 1
+  0.48583622668320264<={}<0.49386969975260897: 4
+  0.49386969975260897<={}<0.5019031728220154: 3
+  0.5019031728220154<={}<0.5099366458914217: 4
+  0.5099366458914217<={}<0.517970118960828: 4
+  0.517970118960828<={}<0.5260035920302344: 2
+  outage: 1
+  Histogram:
+  0.46976928054438993<={}<0.47780275361379626
+  | *****
+  0.47780275361379626<={}<0.48583622668320264
+  | *****
+  0.48583622668320264<={}<0.49386969975260897
+  | ********************
+  0.49386969975260897<={}<0.5019031728220154
+  | ***************
+  0.5019031728220154<={}<0.5099366458914217
+  | ********************
+  0.5099366458914217<={}<0.517970118960828
+  | ********************
+  0.517970118960828<={}<0.5260035920302344
+  | **********
+  outage:
+  | *****
+  the old method:
+  0.9441738640632169<={}<0.9576667412050991: 1
+  0.9576667412050991<={}<0.9711596183469812: 2
+  0.9711596183469812<={}<0.9846524954888634: 2
+  0.9846524954888634<={}<0.9981453726307454: 4
+  0.9981453726307454<={}<1.0116382497726275: 5
+  1.0116382497726275<={}<1.0251311269145098: 3
+  1.0251311269145098<={}<1.0386240040563919: 2
+  outage: 1
+  Histogram:
+  0.9441738640632169<={}<0.9576667412050991
+  | *****
+  0.9576667412050991<={}<0.9711596183469812
+  | **********
+  0.9711596183469812<={}<0.9846524954888634
+  | **********
+  0.9846524954888634<={}<0.9981453726307454
+  | ********************
+  0.9981453726307454<={}<1.0116382497726275
+  | *************************
+  1.0116382497726275<={}<1.0251311269145098
+  | ***************
+  1.0251311269145098<={}<1.0386240040563919
+  | **********
+  outage:
+  | *****
+#+end_src
+the new method, using two epsilon sequences to genereate one, makes the estimations more distributed
+while the old one actually has the hightest quantum around 1.0

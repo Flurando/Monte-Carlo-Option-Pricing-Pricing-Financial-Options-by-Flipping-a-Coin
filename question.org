@@ -1,0 +1,87 @@
+#+TITLE: Monte Carlo Option Pricing: Pricing Financial Options by Flipping a Coin
+#+Author: 
+#+LATEX_COMPILER: xelatex
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [a4paper,10pt]
+#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+#+LATEX_HEADER: \usepackage{xeCJK}
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \setCJKmainfont{WenQuanYi Zen Hei}
+#+OPTIONS: \n:t toc:t num:nil date:nil
+
+* Background
+A discrete model for change in price of a stock over a time interval $[0, T]$ is
+\begin{equation}
+S_{n+1} = S_n + \mu S_n \Delta t + \delta S_n \epsilon_{n+1}\sqrt{\Delta t}, S_0=s
+\end{equation}
+where $S_n = S(t_n)$ is the stock price at time $t_n = n\Delta t, n = 0,\dots, N − 1, \Delta t = T/N$, $\mu$ is the annual growth rate of the stock, and $\delta$ is a measure of the stock’s annual price volatility or tendency to fluctuate.
+Highly volatile stocks have large values for $\delta$, for example, values ranging from 0.2 to 0.4.
+Each term in the sequence $\epsilon 1, \epsilon 2,\dots$ takes on the value 1 or −1 depending on whether the outcome of a coin tossing experiment is heads or tails, respectively.
+Thus, for each $n = 1, 2,\dots$,
+\begin{equation}
+\epsilon_n = \begin{cases}
+1 &\quad\text{with probability} = \frac{1}{2}\\
+-1 &\quad\text{with probability} = \frac{1}{2}
+\end{cases}
+\end{equation}
+A sequence of such numbers can easily be created by using one of the random number generators available in most mathematical computer software applications. Given such a sequence, the difference equation (1) can then be used to simulate a sample path or trajectory of stock prices, ${s,S_1,S_2,\dots,S_N}$.
+The "random" terms $\delta S_n \epsilon_{n+1} \sqrt{\Delta t}$ on the right-hand side of (1) can be thought of as “shocks” or “disturbances” that model fluctuations in the stock price.
+By repeatedly simulating stock price trajectories and computing appropriate averages, it is possible to obtain estimates of the price of a European call option, a type of financial derivative. A statistical simulation algorithm of this type is called a Monte Carlo method.
+A European call option is a contract between two parties, a holder and a writer, whereby, for a premium paid to the writer, the holder acquires the right (but not the obligation) to purchase the stock at a future date T (the expiration date) at a price K (the strike price) agreed upon in the contract. If the buyer elects to exercise the option on the expiration date, the writer is obligated to sell the underlying stock to the buyer at the price K. Thus the option has, associated with it, a payoff function
+\begin{equation}
+f(S) = \text{max}(S−K,0)
+\end{equation}
+where $S = S(T)$ is the price of the underlying stock at the time T when the option expires
+Eq. (3) is the value of the option at time T since, if $S(T) > K$, the holder can purchase, at price K, stock with market value $S(T)$ and thereby make a profit equal to $S(T) − K$ not counting the option premium. If $S(T) < K$, the holder will simply let the option expire since it would be irrational to purchase stock at a price that exceeds the market value. The option valuation problem is to determine the correct and fair price of the option at the time that the holder and writer enter into the contract.
+To estimate the price of a call option using a Monte Carlo method, an ensemble
+\begin{equation}
+\left\{S_N^{(k)} = S^{(k)}(T), k = 1, \dots, M\right\}
+\end{equation}
+of M stock prices at expiration is generated using the difference equation
+\begin{equation}
+S_{n+1}^{(k)} = S_n^{(k)} + rS_n^{(k)}\Delta t + \delta S_n^{(k)} \epsilon_{n+1}^{(k)}\sqrt{\Delta t}, \quad S_0^{(k)}=s
+\end{equation}
+For each $k = 1,\dots,M$, the difference equation (4) is identical to Eq. (1) except that the growth rate $\mu$ is replaced by the annual rate of interest $r$ that it costs the writer to borrow money.
+Option pricing theory requires that the average value of the payoffs $\left\{f(S_N^{(k)}), k=1,\dots,M \right\}$ be equal to the compounded total return obtained by investing the option premium, $\mathring{C}(s)$, at rate $r$ over the life of the option,
+\begin{equation}
+\frac{1}{M}\sum_{k=1}^M f(S_N^{(k)}) = (1 + r\Delta t)^N\mathring{C}(s)
+\end{equation}
+Solving (5) for $\mathring{C}(s)$ yields the Monte Carlo estimate
+\begin{equation}
+\mathring{C}(s) = (1+r\Delta t)^{-N} \left\{\frac{1}{M}\sum_{k=1}^M f(S_N^{(k)})\right\}
+\end{equation}
+for the option price. Thus the Monte Carlo estimate $\mathring{c}(s)$ is the present value of the average of the payoffs computed using the rules of compound interest.
+
+* Questions
+** 1
+Show that Euler’s method applied to the differential equation
+\begin{equation*}
+\frac{dS}{dt}=\mu S
+\end{equation*}
+yields Eq. (1) in the absence of random disturbances, that is, when $\delta = 0$.
+** 2
+Simulate five sample trajectories of Eq. (1) for the following parameter values and plot the trajectories on the same set of coordinate axes: $\mu = 0.12, \delta = 0.1, T = 1, s = \textdollar 40, N = 254$.
+Then repeat the experiment using the value $\delta = 0.25$ for the volatility.
+Do the sample trajectories generated in the latter case appear to exhibit a greater degree of variability in their behavior?
+/Hint:/ For the $\epsilon_n$ ’s it is permissible to use a random number generator that creates normally distributed random numbers with mean zero and variance one.
+** 3
+Use the difference equation (4) to generate an ensemble of stock prices $S_N^{(k)} = S^{(k)}(N\Delta t),k = 1,\dots, M$ (where $T = N\Delta t$) and then use formula (6) to compute a Monte Carlo estimate of the value of a five month call option ($T = \frac{5}{12}$ years) for the following parameter values: $r = 0.06$, $\delta = 0.2$, and $K = \textdollar 50$. Find estimates corresponding to current stock prices of $S(0) = s = \textdollar 45, \textdollar 50, and \textdollar 55$.
+Use $N = 200$ time steps for each trajectory and $M \cong 10,000$ sample trajectories for each Monte Carlo estimate.
+Check the accuracy of your results by comparing the Monte Carlo approximation with the value computed from the exact Black–Scholes formula
+$$C(s) = \frac{s}{2} \text{erfc} \left(-\frac{d_1}{\sqrt{2}}\right) - \frac{K}{2} e^{-rT} \text{erfc} \left(-\frac{d_2}{\sqrt{2}}\right)$$
+where
+$$\left\{\begin{aligned}
+d_1 &= \frac{1}{\delta \sqrt{T}} \left[\ln \left(\frac{s}{k}\right) + \left(r+\frac{\delta^2}{2}\right)T\right]\\
+d_2 &= d_1 - \delta \sqrt{T}
+\end{aligned}\right.$$
+and erfc(x) is the complementary error function,
+$$\text{erfc} (x) = 1 - \frac{2}{\sqrt{\pi}} \int_x^{\infty} e^{-t^2} dt$$
+** 4 *Variance Reduction by Antithetic Variates*
+A simple and widely used technique for increasing the efficiency and accuracy of Monte Carlo simulations in certain situations with little additional increase in computational complexity is the method of antithetic variates.
+For each $k=1,\dots,M$, use the sequence $\left\{\epsilon_1^{(k)},\dots,\epsilon_{N-1}^{(k)}\right\}$ in Eq.(4) to simulate a payoff $f(S_N^{(k+)})$ and also use the sequence $\left\{-\epsilon_1^{(k)},\dots,-\epsilon_{N-1}^{(k)}\right\}$ in Eq.(4) to simulate an associated payoff $f(S_N^{(k-)})$.
+Thus, the payoffs are simulated in pairs $\left\{f(S_N^{(k+)}), f(S_N^{(k-)})\right\}$.
+A modified Monte Carlo estimate is then computed by replacing each payoff $f(S_N^{(k)})$ in Eq.(6) by the average $\frac{f(S_N^{(k+)})+f(S_N^{(k-)})}{2}$,
+$$\mathring{C}_{AV}(s) = \frac{\frac{1}{M}\sum_{k=1}^M \frac{f(S_N^{(k+)})+f(S_N^{(k-)})}{2}}{(1+r\Delta t)^N}$$
+Use the parameters specified in Problem 3 to compute several (say, 20 or so) option price estimates using Eq. (6) and an equivalent number of option price estimates using (iii). For each of the two methods, plot a histogram of the estimates and compute the mean and standard deviation of the estimates.
+Comment on the accuracies of the two methods.

@@ -1,0 +1,2 @@
+#!/bin/sh
+guix time-machine -C env/channel.scm -- shell -C -m env/manifest.scm
