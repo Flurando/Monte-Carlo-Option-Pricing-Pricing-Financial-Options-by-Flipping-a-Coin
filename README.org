@@ -13,7 +13,7 @@
 * What is this project about?
 
 See question.org for detail, basically this is a schoolwork/homework required by the math teacher.
-Deadline is about 15 November 2025, would archive this after the deadline.
+Deadline is about 15 December 2025, would archive this after the deadline.
 
 * How to use?
 
