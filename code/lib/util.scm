@@ -1,5 +1,4 @@
 (define-module (util)
-  #:use-module (system foreign)
   #:export (make-list-with-thunk black-scholes percentage-error make-payoff last-element mean standard-derivation list->histogram))
 
 (define (make-list-with-thunk n thunk)
