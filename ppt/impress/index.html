@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="impress-js-version" content="commit c9f6c67457ceee5a011e554f67c447113640777d" />
+    <title>Monte Carlo Option Pricing: Pricing Financial Options by Flipping a Coin</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <script>
+      MathJax = {
+	  tex: {
+	      inlineMath: {'[+]': [['$', '$']]}
+	  }
+      };
+    </script>
+    <script src="js/tex-mml-chtml.js"></script>
+  </head>
+  <body class="impress-not-supported">
+    <div class="fallback-message">
+      <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    </div>
+    <div id="impress"
+	 data-transition-duration="1000"
+	 
+	 data-width="1200"
+	 data-height="720"
+	 data-max-scale="3"
+	 data-min-scale="0"
+	 data-perspective="1200"
+	 
+	 data-autoplay="0">
+      <div id="title" class="step" data-x="0" data-y="0" data-z="0" data-scale="1">
+	<h1>Monte Carlo Option Pricing</h1>
+      </div>
+      <div id="subtitle" class="step" data-x="0" data-y="430" data-z="-3000" data-rotate="180" data-scale="1">
+	<h1>Pricing Financial Options by Flipping a Coin</h1>
+      </div>
+      <div id="background" class="step" data-x="0" data-y="-370" data-z="-1500" data-rotate-x="90"  data-scale="1">
+	<p>What is European Financial Option?</p>
+      </div>
+      <div id="basic-expression" class="step" data-x="0" data-y="230" data-z="-1900" data-rotate-x="120" data-scale="1">
+        <p>ideally without shocks</br>\begin{equation*}\frac{dS}{dt}=\mu S\end{equation*}</p>
+      </div>
+      <div id="apply-euler-method" class="step" data-x="0" data-y="730" data-z="-2200" data-rotate-x="150" data-scale="1">
+        \begin{align*}
+	S_{n+1}
+	&= S_n + \left.\frac{dS}{dt}\right|_{t_n} S_n \Delta t\\
+	&= S_n + \mu S_n \Delta t
+	\end{align*}
+      </div>
+      <div id="monte-carlo-model" class="step" data-x="1800" data-y="770" data-z="-3500" data-rotate-x="180"  data-scale="1">
+	$$S_0 = s$$
+	$$S_{n+1} = S_n + \mu S_n \Delta t + \delta S_n \epsilon_{n+1}\sqrt{\Delta t}$$
+      </div>
+      <div id="monte-carlo-model-parameter-explain-1" class="step" data-x="1800" data-y="770" data-z="-6700" data-rotate-x="180"  data-scale="1">
+	<p>$S_n = S(t_n)$ is the stock price at time $t_n = n\Delta t, n = 0,\dots, N − 1, \Delta t = T/N$,</br>
+	  $\mu$ is the annual growth rate of the stock,</br>
+	  $\delta$ is a measure of the stock’s annual price volatility or tendency to fluctuate.</p>
+      </div>
+      <div id="monte-carlo-model-parameter-explain-2" class="step" data-x="1800" data-y="770" data-z="-12700" data-rotate-x="180"  data-scale="1">
+	<p>Highly volatile stocks have large values for $\delta$, for example, values ranging from 0.2 to 0.4.</br>
+	  Each term in the sequence $\epsilon 1, \epsilon 2,\dots$ is $1$ or $−1$ depending on whether the outcome of a coin tossing is heads or tails, respectively.</p>
+      </div>
+      <div id="simulation" class="step" data-x="0" data-y="3000" data-z="0"  data-scale="1">
+	<p>after translating natural language in the PDF mannually</p>
+	<p>which is actually super boring to do</p>
+      </div>
+      <div id="result" class="step" data-x="0" data-y="3000" data-z="-5000"  data-scale="0.2">
+	<p>for example, a translation of John D. Cook's post on StackOverflow</br>
+	  which is in python originally</p>
+	<p>Mmm, this is what <i>Lisp</i> like</p>
+	<code style="display:block; white-space:pre-wrap">
+(- 1.0  (* t (exp (- (* abs-x abs-x))) (+ a1 (* t (+ a2 (* t (+ a3 (* t (+ a4 (* t a5))))))))))
+	</code>
+      </div>
+      <div id="last" class="step" data-x="500" data-y="3000" data-z="-5000"  data-scale="0.2">
+	<del><p>Result: Monte Carlo Method is really <strong>reliable</strong>!</p></del>
+	<p>Result: This might be the easiest question in the whole PDF :)</p>
+      </div>
+      <div id="reference" class="step" data-x="-200" data-y="-200" data-z="3000"  data-scale="1">
+	<p>See <a href="https://github.com/Flurando/Monte-Carlo-Option-Pricing-Pricing-Financial-Options-by-Flipping-a-Coin">the repository</a> for source & details</P 
+      </div>
+    </div>
+    <script src="js/impress.js"></script>
+    <script>impress().init();</script>
+  </body>
+</html>

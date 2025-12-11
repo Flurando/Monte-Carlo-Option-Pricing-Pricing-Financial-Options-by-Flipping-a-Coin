@@ -1,0 +1,15 @@
+plans
+1. impress.js
+the coolest presentation tool using CSS3D frontend tech
+downside is the requirement of latest browser support
+2. skribilo
+while I like its structure and feeling
+but it is really hard to use, with kind of poor document and a very inactive community
+I would not use this because from the document I found no way of adding css or equivalence
+3. org beamer
+Legacy solution, my pick as a last resort before deadline
+4. MS PowerPoint / Google Slides
+I would not use them, but teammates might, and accepted as long as they could do it on their own
+
+final
+only impress.js solution is finished.
