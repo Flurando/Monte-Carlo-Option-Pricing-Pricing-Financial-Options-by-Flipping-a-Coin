@@ -44,13 +44,37 @@ However, I don't know how to grant others commit right, so if this is possible, 
 Basically, you need a GitHub account, then ~fork~ (by clicking the button) this project, make change on your own fork, then submit a ~Pull Request~ back.
 
 * todos
-** TODO [high] write an essay
-** TODO [high] make a powerpoint
+** DONE [high] write an essay
+** DONE [high] make a powerpoint
 ** TODO [low] add alternative ways for reproducible computing, like docker
 ** TODO [low] add serialization so that previous computing results could be stored and recovered
 ** TODO [low] connect to some ci service for calculating
 
 * Liscense
 All codes contained, if not specified (like the erf implementation reference source), is GPLv3+ liscenced.
+If compiled to WASM or other equivalence to run in browser, AGPLv3+ should be applied instead.
 All texts contained, if not specified (like the transcripted pdf question part), is GFDLv1.3+ liscenced.
 Note that new content might not follow this as collaborators join.
+
+* Wrapup
+** Final Status
+As of 12 DEC 2025
+There would be no update or maintainence anymore, archiving.
+** Abbreviate Tooling Choices
+The final tooling is as below:
+1. essay/readme
+   Emacs Org Mode with Latex Export (Xetex + xeCJK)
+2. ppt
+   impress.js
+3. coding
+   Guile Scheme with optional Plotutils wrapper
+4. reproducible environment
+   Guix Package Manager
+5. Preservation
+   SoftwareHeritage (SWH)
+** AI Usage
+GPT4o-mini (Duck.ai Free) for translation only
+see essay/main.org for details
+This is applied only because I am too lazy to write the same content twice, in English and Chinese.
+So the chinese version is AI translated from my handwritten English version because I decide to use Chinese for essay much later than baking the English reference.
+
