@@ -1,5 +1,5 @@
 #+TITLE: 蒙特卡洛定价法简明介绍
-#+AUTHOR:
+#+AUTHOR: 
 #+AFFILIATION: 深圳大学
 #+DESCRIPTION: 关于欧洲看涨期权的定价问题，评估蒙特卡洛随机数法的优劣和适用性。
 #+LATEX_COMPILER: xelatex
@@ -224,9 +224,9 @@ stackoverflow上关于erfc的无依赖实现。
 由于SWH得先存档才生成标识，所以此处的identifier其实指向的是老版本。
 #+end_comment
 :identifier:
-swh:1:dir:26448319be70d603c80c30da97f7bf014dad3354;
+swh:1:dir:edb8c639f79c7e2bc3f85dd9568827dffc1f509e;
 origin=https://github.com/Flurando/Monte-Carlo-Option-Pricing-Pricing-Financial-Options-by-Flipping-a-Coin;
-visit=swh:1:snp:bc6b22d633b062b659e3b56b7afd95ddacb7d9c3;
-anchor=swh:1:rev:578d0a70f1b428854cd42b987dc616efc281b186
+visit=swh:1:snp:3593c4d586261706b19049da49c740c07901b076;
+anchor=swh:1:rev:201b424cf51b9245379573ff4712bd95bceaf1e6
 :end:
 使用方法详见库的子文件夹内README文件。
